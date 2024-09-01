@@ -4,6 +4,7 @@ import DropdownMessage from "./DropdownMessage";
 import DropdownNotification from "./DropdownNotification";
 import DropdownUser from "./DropdownUser";
 import Image from "next/image";
+import CashBalanceButton from "./CashBalanceButton";
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
@@ -108,13 +109,13 @@ const Header = (props: {
             <DarkModeSwitcher />
             {/* <!-- Dark Mode Toggler --> */}
 
+            {/* <!-- Cash Balance Button --> */}
+            <CashBalanceButton />
+            {/* <!-- Cash Balance Button --> */}
+
             {/* <!-- Notification Menu Area --> */}
             <DropdownNotification />
             {/* <!-- Notification Menu Area --> */}
-
-            {/* <!-- Chat Notification Area --> */}
-            <DropdownMessage />
-            {/* <!-- Chat Notification Area --> */}
           </ul>
 
           {/* <!-- User Area --> */}

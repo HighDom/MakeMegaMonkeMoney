@@ -18,15 +18,10 @@ const ECommerce: React.FC = () => {
         <CardDataStats title="Profit" total="$23" rate="4.35%" levelUp>
           <img src="/images/icon/profit-96.png" width={22} height={22}></img>
         </CardDataStats>
-        <CardDataStats title="Total Bets" total="14" rate="2.2%" levelUp>
+        <CardDataStats title="Bets" total="14" rate="2.2%" levelUp>
           <img src="/images/icon/bet.png" width={22} height={22}></img>
         </CardDataStats>
-        <CardDataStats
-          title="Total Bet Volume"
-          total="2319"
-          rate="0.95%"
-          levelUp
-        >
+        <CardDataStats title="Volume" total="2319" rate="0.9%" levelUp>
           <img src="/images/icon/bill-96.png" width={22} height={22}></img>
         </CardDataStats>
       </div>
