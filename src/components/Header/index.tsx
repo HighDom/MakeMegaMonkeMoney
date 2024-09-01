@@ -5,6 +5,7 @@ import DropdownNotification from "./DropdownNotification";
 import DropdownUser from "./DropdownUser";
 import Image from "next/image";
 import CashBalanceButton from "./CashBalanceButton";
+import CashBalance from "./CashBalance";
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
@@ -108,6 +109,8 @@ const Header = (props: {
             {/* <!-- Dark Mode Toggler --> */}
             <DarkModeSwitcher />
             {/* <!-- Dark Mode Toggler --> */}
+
+            <CashBalance balance={49.99} />
 
             {/* <!-- Cash Balance Button --> */}
             <CashBalanceButton />
