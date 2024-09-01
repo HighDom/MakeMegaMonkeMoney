@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 interface ConstBalanceProp {
@@ -6,13 +7,13 @@ interface ConstBalanceProp {
 
 const CashBalance: React.FC<ConstBalanceProp> = ({ balance }) => {
   return (
-    <div className="flex flex-col items-center">
-      <span className="text-sm font-medium text-green-500 dark:text-green-500">
+    <div className="flex flex-col items-center rounded-md px-2 py-2 text-center hover:bg-slate-100">
+      <Link
+        className="text-md font-bold text-green-500 dark:text-green-500"
+        href={""}
+      >
         {balance ? balance + " $" : "0.00" + " $"}
-      </span>
-      <span className="text-grey-100 text-sm font-medium dark:text-white">
-        Cash
-      </span>
+      </Link>
     </div>
   );
 };
