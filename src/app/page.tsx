@@ -1,18 +1,18 @@
 import ECommerce from "@/components/Dashboard/E-commerce";
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
+import Web3AuthProvider from "@/context/web3AuthContext";
 
-export const metadata: Metadata = {
-  title: "Next.js E-commerce Dashboard",
-  description: "This is Next.js Home",
-};
+import { useEffect, useState } from "react";
 
 export default function Home() {
   return (
     <>
-      <DefaultLayout>
-        <ECommerce />
-      </DefaultLayout>
+      <Web3AuthProvider>
+        <DefaultLayout>
+          <ECommerce />
+        </DefaultLayout>
+      </Web3AuthProvider>
     </>
   );
 }
