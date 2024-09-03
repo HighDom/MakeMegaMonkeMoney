@@ -26,14 +26,20 @@ const Header = (props: {
     getUserInfo,
   } = useWeb3Auth();
 
-  useEffect(() => {
-    //Set the name
-    console.log("Header: ", loggedIn);
-    getUserInfo();
-    //Set the account
-    getAccounts();
+  const fetchUserInformation = async () => {
+    if (!loggedIn) {
+      console.error("User is not logged in. Cannot fetch user information.");
+      return;
+    }
+    console.log("Fetching user information...");
+    await getUserInfo();
+    await getAccounts();
+    console.log("Header userName: ", userName);
+    console.log("Header userAccount: ", userAccount);
+  };
 
-    console.log("Header End: ", loggedIn);
+  useEffect(() => {
+    fetchUserInformation();
   }, []);
 
   return (

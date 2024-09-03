@@ -76,6 +76,8 @@ const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
         setProvider(web3auth.provider);
         if (web3auth.connected) {
           setLoggedIn(true);
+          await getUserInfo();
+          await getAccounts();
         }
       } catch (error) {
         console.error(error);
