@@ -49,7 +49,7 @@ const Web3AuthContext = createContext({
   logout: async () => {},
   getUserInfo: async () => {},
   getUserName: async () => {
-    return "";
+    return "test";
   },
   getAccounts: async () => {},
   getBalance: async () => {},
@@ -128,6 +128,7 @@ const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
     }
     const address = await RPC.getAccounts(provider);
     uiConsole(address);
+    return address;
   };
 
   const getBalance = async () => {

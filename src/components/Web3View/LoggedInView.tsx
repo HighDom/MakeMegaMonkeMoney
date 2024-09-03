@@ -28,6 +28,7 @@ const loggedInView = () => {
           </button>
         </div>
         <div>
+          a
           <button onClick={signMessage} className="card">
             Sign Message
           </button>

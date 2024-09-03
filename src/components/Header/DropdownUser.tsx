@@ -22,22 +22,24 @@ declare type OpenloginUserInfo = {
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { getUserName, logout } = useWeb3Auth();
+  const { getUserName, logout, getUserInfo } = useWeb3Auth();
 
-  const [userName, setUserName] = useState<string | null>(null);
+  const [userName, setUserName] = useState<string | null>("Not Initialized");
 
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
+        console.log("Fetching User Info");
         const User = await getUserName();
         setUserName(User);
+        console.log(User);
       } catch (err) {
         console.log(err);
       }
     };
 
     fetchUserInfo();
-  });
+  }, []);
 
   console.log(userName);
 
@@ -50,7 +52,7 @@ const DropdownUser = () => {
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            {userName}
+            {"username: " + userName}
           </span>
           <span className="block text-xs">0x569...aa5</span>
         </span>
