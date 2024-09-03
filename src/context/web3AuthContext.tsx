@@ -48,6 +48,9 @@ const Web3AuthContext = createContext({
   login: async () => {},
   logout: async () => {},
   getUserInfo: async () => {},
+  getUserName: async () => {
+    return "";
+  },
   getAccounts: async () => {},
   getBalance: async () => {},
   signMessage: async () => {},
@@ -98,9 +101,23 @@ const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const getUserInfo = async () => {
+  const getUserInfo = async (): Promise<void> => {
     const user = await web3auth.getUserInfo();
     uiConsole(user);
+  };
+
+  const getUserName = async () => {
+    const username = await web3auth.getUserInfo.arguments[0].name;
+    console.log("username", username);
+    uiConsole(username);
+    return username;
+  };
+
+  const getUserWallet = async () => {
+    const username = await web3auth.getUserInfo.arguments[0].name;
+    console.log("username", username);
+    uiConsole(username);
+    return username;
   };
 
   // Check the RPC file for the implementation
@@ -156,6 +173,7 @@ const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
         login,
         logout,
         getUserInfo,
+        getUserName, // Add getUserName to the value object
         getAccounts,
         getBalance,
         signMessage,
