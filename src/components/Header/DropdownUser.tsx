@@ -5,38 +5,20 @@ import ClickOutside from "@/components/ClickOutside";
 import { Web3Auth } from "@web3auth/modal";
 import { useWeb3Auth } from "@/context/web3AuthContext";
 
-declare type UserInfo = OpenloginUserInfo;
-
-declare type OpenloginUserInfo = {
-  email: string;
-  name: string;
-  profileImage: string;
-  aggregateVerifier: string;
-  verifier: string;
-  verifierId: string;
-  dappShare?: string;
-  idToken?: string;
-  oAuthIdToken?: string;
-  oAuthAccessToken?: string;
+type DropdownUserProps = {
+  userName: string;
+  userAccount: string;
+  userProfile: string;
+  logout: () => void;
 };
 
-const DropdownUser = () => {
+const DropdownUser = ({
+  userName,
+  userAccount,
+  userProfile,
+  logout,
+}: DropdownUserProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const {
-    logout,
-    userName,
-    userAccount,
-    getAccounts,
-    getUserInfo,
-    userProfile,
-  } = useWeb3Auth();
-
-  useEffect(() => {
-    //Set the name
-    getUserInfo();
-    //Set the account
-    getAccounts();
-  }, []);
 
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative ">
@@ -49,7 +31,11 @@ const DropdownUser = () => {
           <span className="block text-sm font-medium text-black dark:text-white">
             {userName ? userName : "Default Username"}
           </span>
-          <span className="block text-xs">{`${userAccount.slice(0, 4)}..${userAccount.slice(-4)}`}</span>
+          <span className="block text-xs">
+            {userAccount
+              ? `${String(userAccount).slice(0, 4)}..${String(userAccount).slice(-4)}`
+              : "No Address"}
+          </span>
         </span>
 
         <span className="h-12 w-12 rounded-full">
