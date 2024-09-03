@@ -26,7 +26,7 @@ const Header = (props: {
 
             {/** Logged In??? */}
 
-            <CashBalance balance={49.99} />
+            <CashBalance />
 
             {/* <!-- Cash Balance Button --> */}
             <CashBalanceButton />

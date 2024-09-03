@@ -55,11 +55,19 @@ const Web3AuthContext = createContext({
   getBalance: async () => {},
   signMessage: async () => {},
   sendTransaction: async () => {},
+  userName: "Not Initialized",
+  userAccount: "Not Initialized",
+  userProfile: "Not Initialized",
+  userBalance: "Not Initialized",
 });
 
 const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
   const [provider, setProvider] = useState<IProvider | null>(null);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [userName, setUserName] = useState<string>("Default Username");
+  const [userAccount, setUserAccount] = useState<string>("Default Account");
+  const [userProfile, setUserProfile] = useState<string>("Default Image");
+  const [userBalance, setUserBalance] = useState<string>("Default Balance");
 
   useEffect(() => {
     const init = async () => {
@@ -83,6 +91,10 @@ const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
       if (web3auth.connected) {
         setLoggedIn(true);
       }
+      getUserInfo();
+      console.log("userName in login", userName);
+      getAccounts();
+      console.log("userAccount in login", userAccount);
     } catch (error) {
       console.error(error);
     }
@@ -103,18 +115,22 @@ const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const getUserInfo = async (): Promise<void> => {
     const user = await web3auth.getUserInfo();
+
+    if (user.name) {
+      console.log("user.name", user.name);
+      setUserName(user.name);
+    }
+    if (user.profileImage) {
+      console.log("user.profileImage", user.profileImage);
+      setUserProfile(user.profileImage);
+    }
+
+    console.log("user", user);
     uiConsole(user);
   };
 
   const getUserName = async () => {
-    const username = await web3auth.getUserInfo.arguments[0].name;
-    console.log("username", username);
-    uiConsole(username);
-    return username;
-  };
-
-  const getUserWallet = async () => {
-    const username = await web3auth.getUserInfo.arguments[0].name;
+    const username = await web3auth.getUserInfo.name;
     console.log("username", username);
     uiConsole(username);
     return username;
@@ -127,6 +143,7 @@ const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
       return;
     }
     const address = await RPC.getAccounts(provider);
+    setUserAccount(address);
     uiConsole(address);
     return address;
   };
@@ -137,6 +154,7 @@ const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
       return;
     }
     const balance = await RPC.getBalance(provider);
+    setUserBalance(balance);
     uiConsole(balance);
   };
 
@@ -179,6 +197,10 @@ const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
         getBalance,
         signMessage,
         sendTransaction,
+        userName,
+        userAccount,
+        userProfile,
+        userBalance,
       }}
     >
       {children}

@@ -22,29 +22,24 @@ declare type OpenloginUserInfo = {
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { getUserName, logout, getUserInfo } = useWeb3Auth();
-
-  const [userName, setUserName] = useState<string | null>("Not Initialized");
+  const {
+    logout,
+    userName,
+    userAccount,
+    getAccounts,
+    getUserInfo,
+    userProfile,
+  } = useWeb3Auth();
 
   useEffect(() => {
-    const fetchUserInfo = async () => {
-      try {
-        console.log("Fetching User Info");
-        const User = await getUserName();
-        setUserName(User);
-        console.log(User);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    fetchUserInfo();
+    //Set the name
+    getUserInfo();
+    //Set the account
+    getAccounts();
   }, []);
 
-  console.log(userName);
-
   return (
-    <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
+    <ClickOutside onClick={() => setDropdownOpen(false)} className="relative ">
       <Link
         onClick={() => setDropdownOpen(!dropdownOpen)}
         className="flex items-center gap-4"
@@ -52,21 +47,26 @@ const DropdownUser = () => {
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            {"username: " + userName}
+            {userName ? userName : "Default Username"}
           </span>
-          <span className="block text-xs">0x569...aa5</span>
+          <span className="block text-xs">{`${userAccount.slice(0, 4)}..${userAccount.slice(-4)}`}</span>
         </span>
 
         <span className="h-12 w-12 rounded-full">
           <Image
             width={112}
             height={112}
-            src={"/images/user/user-01.png"}
+            src={
+              userProfile === "Default Image" || !userProfile
+                ? "/images/user/user-01.png"
+                : userProfile
+            }
             style={{
               width: "auto",
               height: "auto",
             }}
             alt="User"
+            className="rounded-full shadow-12"
           />
         </span>
 
