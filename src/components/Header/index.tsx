@@ -9,12 +9,33 @@ import CashBalance from "./CashBalance";
 import { useWeb3Auth } from "@/context/web3AuthContext";
 import LoggedInView from "../Web3View/LoggedInView";
 import UnloggedInView from "../Web3View/UnloggedInView";
+import { useEffect } from "react";
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
   setSidebarOpen: (arg0: boolean) => void;
 }) => {
-  const { loggedIn } = useWeb3Auth();
+  const {
+    loggedIn,
+    userName,
+    userAccount,
+    userProfile,
+    userBalance,
+    logout,
+    getAccounts,
+    getUserInfo,
+  } = useWeb3Auth();
+
+  useEffect(() => {
+    //Set the name
+    console.log("Header: ", loggedIn);
+    getUserInfo();
+    //Set the account
+    getAccounts();
+
+    console.log("Header End: ", loggedIn);
+  }, []);
+
   return (
     <header className="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none">
       <div className="flex flex-grow items-center justify-end px-4 py-4 shadow-2 md:px-6 2xl:px-11">
@@ -26,11 +47,9 @@ const Header = (props: {
 
             {/** Logged In??? */}
 
-            <CashBalance />
+            {loggedIn ? <CashBalance userBalance={userBalance} /> : null}
 
-            {/* <!-- Cash Balance Button --> */}
-            <CashBalanceButton />
-            {/* <!-- Cash Balance Button --> */}
+            {loggedIn ? <CashBalanceButton /> : null}
 
             {/* <!-- Notification Menu Area --> */}
             <DropdownNotification />
@@ -40,7 +59,16 @@ const Header = (props: {
           {/* <!-- User Area --> */}
 
           <div className="grid">
-            {loggedIn ? <DropdownUser /> : <UnloggedInView />}
+            {loggedIn ? (
+              <DropdownUser
+                userName={userName}
+                userAccount={userAccount}
+                userProfile={userProfile}
+                logout={logout}
+              />
+            ) : (
+              <UnloggedInView />
+            )}
           </div>
           {/* <!-- User Area --> */}
         </div>
