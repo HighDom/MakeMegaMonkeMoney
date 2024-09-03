@@ -88,13 +88,9 @@ const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       const web3authProvider = await web3auth.connect();
       setProvider(web3authProvider);
-      if (web3auth.connected) {
-        setLoggedIn(true);
-      }
-      getUserInfo();
-      console.log("userName in login", userName);
-      getAccounts();
-      console.log("userAccount in login", userAccount);
+      setLoggedIn(true);
+      await getUserInfo();
+      await getAccounts();
     } catch (error) {
       console.error(error);
     }
@@ -192,7 +188,7 @@ const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
         login,
         logout,
         getUserInfo,
-        getUserName, // Add getUserName to the value object
+        getUserName,
         getAccounts,
         getBalance,
         signMessage,
