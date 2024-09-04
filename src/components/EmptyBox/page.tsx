@@ -3,7 +3,7 @@ import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import dynamic from "next/dynamic";
 import React from "react";
 
-const Chart: React.FC = () => {
+const EmptyBox: React.FC = () => {
   return (
     <div className="h-180 rounded-sm border border-stroke bg-white px-7.5 py-6 shadow-default dark:border-strokedark dark:bg-boxdark">
       <div className="mt-4 flex items-end justify-between">
@@ -20,4 +20,4 @@ const Chart: React.FC = () => {
   );
 };
 
-export default Chart;
+export default EmptyBox;

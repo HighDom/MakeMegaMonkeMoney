@@ -6,6 +6,7 @@ import ChartTwo from "../Charts/ChartTwo";
 import TableOne from "../Tables/TableOne";
 import CardDataStats from "../CardDataStats";
 import EmptyBox from "../EmptyBox/page";
+import Bet from "../Bet/Bet";
 
 const ECommerce: React.FC = () => {
   return (
@@ -26,7 +27,7 @@ const ECommerce: React.FC = () => {
       </div>
 
       <div className="mt-4">
-        <EmptyBox />
+        <Bet />
       </div>
     </>
   );

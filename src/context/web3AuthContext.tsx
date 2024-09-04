@@ -2,9 +2,12 @@
 import { CHAIN_NAMESPACES, IProvider, WEB3AUTH_NETWORK } from "@web3auth/base";
 import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
 import { Web3Auth } from "@web3auth/modal";
+import { ReactNode } from "react";
 
 import RPC from "./ethersRPC";
 import { createContext, useContext, useEffect, useState } from "react";
+import { createPublicClient, createWalletClient, custom, http } from "viem";
+import { mainnet, sepolia } from "viem/chains";
 
 // import RPC from "./viemRPC";
 // import RPC from "./web3RPC";
@@ -31,7 +34,7 @@ const chainConfig = {
 };
 
 const privateKeyProvider = new EthereumPrivateKeyProvider({
-  config: { chainConfig },
+  config: { chainConfig: chainConfig },
 });
 
 const web3auth = new Web3Auth({
@@ -40,7 +43,15 @@ const web3auth = new Web3Auth({
   privateKeyProvider,
 });
 
-import { ReactNode } from "react";
+const publicClient = createPublicClient({
+  chain: sepolia, // FIXME: use the correct chain
+  transport: http("https://rpc.sepolia.org"), //FIXME: No clue what this transport is
+});
+
+const walletClient = createWalletClient({
+  chain: sepolia, // FIXME: use the correct chain
+  transport: http("https://rpc.sepolia.org"), //FIXME: No clue what this transport is
+});
 
 const Web3AuthContext = createContext({
   loggedIn: false,
