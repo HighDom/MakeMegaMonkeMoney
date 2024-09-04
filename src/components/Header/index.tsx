@@ -28,10 +28,9 @@ const Header = (props: {
 
   const fetchUserInformation = async () => {
     if (!loggedIn) {
-      console.error("User is not logged in. Cannot fetch user information.");
+      console.log("User is not logged in. Cannot fetch user information.");
       return;
     }
-    console.log("Fetching user information...");
     await getUserInfo();
     await getAccounts();
     console.log("Header userName: ", userName);
@@ -51,11 +50,13 @@ const Header = (props: {
             <DarkModeSwitcher />
             {/* <!-- Dark Mode Toggler --> */}
 
-            {/** Logged In??? */}
+            {/* Logged In??? */}
 
             {loggedIn ? <CashBalance userBalance={userBalance} /> : null}
 
             {loggedIn ? <CashBalanceButton /> : null}
+
+            {/* Logged In??? */}
 
             {/* <!-- Notification Menu Area --> */}
             <DropdownNotification />

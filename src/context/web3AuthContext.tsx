@@ -1,5 +1,4 @@
 "use client";
-
 import { CHAIN_NAMESPACES, IProvider, WEB3AUTH_NETWORK } from "@web3auth/base";
 import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
 import { Web3Auth } from "@web3auth/modal";
@@ -75,6 +74,7 @@ const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
         await web3auth.initModal();
         setProvider(web3auth.provider);
         if (web3auth.connected) {
+          console.log("Connected");
           setLoggedIn(true);
           await getUserInfo();
           await getAccounts();
