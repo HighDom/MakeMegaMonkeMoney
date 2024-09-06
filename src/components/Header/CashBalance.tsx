@@ -1,4 +1,3 @@
-import { useWeb3Auth } from "@/context/web3AuthContext";
 import Link from "next/link";
 import React from "react";
 

@@ -7,7 +7,7 @@ import "@/css/style.css";
 import React, { useEffect, useState } from "react";
 import Loader from "@/components/common/Loader";
 import { Web3Auth } from "@web3auth/modal";
-import Web3AuthProvider from "@/context/web3AuthContext";
+import Web3AuthProvider from "@/context/web3AuthProvider";
 
 export default function RootLayout({
   children,
