@@ -6,7 +6,7 @@ import DropdownUser from "./DropdownUser";
 import Image from "next/image";
 import CashBalanceButton from "./CashBalanceButton";
 import CashBalance from "./CashBalance";
-import { useWeb3Auth } from "@/context/web3AuthContext";
+import { useWeb3Auth } from "@/context/useWeb3Auth";
 import LoggedInView from "../Web3View/LoggedInView";
 import UnloggedInView from "../Web3View/UnloggedInView";
 import { useEffect } from "react";
