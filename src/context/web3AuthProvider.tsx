@@ -6,10 +6,20 @@ import { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import Web3AuthContext from "./web3AuthContext";
 import { IProvider } from "@web3auth/base";
-import { getWeb3AuthInstance } from "./web3AuthUtils";
+import {
+  getWeb3AuthInstance,
+  getWalletClient,
+  getPublicClient,
+  getWalletAddresses,
+} from "./web3AuthUtils";
 import RPC from "./ethersRPC";
+import { smartContractDestinationAddress } from "./config";
+import { parseEther } from "viem";
 
+const walletClient = getWalletClient();
+const publicClient = getPublicClient();
 const web3auth = getWeb3AuthInstance();
+const walletAddress = getWalletAddresses();
 
 const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
   const [provider, setProvider] = useState<IProvider | null>(null);
@@ -96,6 +106,7 @@ const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
     return address;
   };
 
+  //NOTE: Got these transactions from Web3Auth, not sure what they do
   const getBalance = async () => {
     if (!provider) {
       uiConsole("provider not initialized yet");
@@ -132,6 +143,21 @@ const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
       console.log(...args);
     }
   }
+
+  const sendTransactionTest = async () => {
+    // data for the transaction
+    const destination = smartContractDestinationAddress;
+    const amount = parseEther("0.00001");
+
+    const address = await walletClient.getAddresses();
+
+    // Prepare transaction
+    const request = await walletClient.prepareTransactionRequest({
+      account: address[0],
+      to: destination,
+      value: amount,
+    });
+  };
 
   return (
     <Web3AuthContext.Provider

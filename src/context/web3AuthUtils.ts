@@ -2,8 +2,10 @@
 import { CHAIN_NAMESPACES, WEB3AUTH_NETWORK } from "@web3auth/base";
 import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
 import { Web3Auth } from "@web3auth/modal";
-import { createPublicClient, createWalletClient, http } from "viem";
+import { get } from "http";
+import { createPublicClient, createWalletClient, http, parseEther } from "viem";
 import { mainnet, sepolia } from "viem/chains";
+import {smartContractDestinationAddress} from "./config";
 
 const clientId =
   "BKhaGjPQk7yRYG2eTz_GXAoU72kUvj1PBg4wMyBkav5xpSoUoi57HNssKwwWlVd4Q6WT06Wl8n45gK_PUzzqPOM";
@@ -25,11 +27,11 @@ const privateKeyProvider = new EthereumPrivateKeyProvider({
   config: { chainConfig: chainConfig },
 });
 
-const web3auth = new Web3Auth({
-  clientId,
-  web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_DEVNET,
-  privateKeyProvider,
-});
+// const web3auth = new Web3Auth({
+//   clientId,
+//   web3AuthNetwork: WEB3AUTH_NETWORK.SAPPHIRE_DEVNET,
+//   privateKeyProvider,
+// });
 
 const publicClient = createPublicClient({
   chain: sepolia, // FIXME: use the correct chain
@@ -55,4 +57,40 @@ export const getWeb3AuthInstance = (): Web3Auth => {
   return web3authInstance;
 };
 
-export default { getWeb3AuthInstance ,web3auth, publicClient, walletClient };
+export const getPublicClient = () => {
+  return publicClient;
+};
+
+export const getWalletClient = () => {
+  return walletClient;
+};
+
+export const getWalletAddresses = async () => {
+  const address = await walletClient.getAddresses();
+  return address;
+}
+
+
+export const signTransactionTest = async () => {
+  // data for the transaction
+  const destination = smartContractDestinationAddress;
+  const amount = parseEther("0.00001");
+
+  const address = await walletClient.getAddresses();
+
+  // Prepare transaction
+  const request = await walletClient.prepareTransactionRequest({
+    account: address[0],
+    to: destination,
+    value: amount,
+  });
+
+  // Sign transaction
+  const signature = await walletClient.signTransaction(request as any);
+
+  // Submit transaction to the blockchain
+  const hash = await walletClient.sendRawTransaction(signature as any);
+}
+
+
+export default { getWeb3AuthInstance , getPublicClient, getWalletClient, getWalletAddresses };

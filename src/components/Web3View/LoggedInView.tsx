@@ -1,4 +1,4 @@
-import { useWeb3Auth } from "@/context/web3AuthContext";
+import { useWeb3Auth } from "@/context/useWeb3Auth";
 
 const loggedInView = () => {
   const {

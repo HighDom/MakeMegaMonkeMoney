@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { IProvider } from "@web3auth/base";
 import { ethers } from "ethers";
+import {smartContractDestinationAddress, currentAddressUsed} from "./config";
 
 const getChainId = async (provider: IProvider): Promise<any> => {
   try {
@@ -92,4 +93,33 @@ const signMessage = async (provider: IProvider): Promise<any> => {
   }
 }
 
-export default {getChainId, getAccounts, getBalance, sendTransaction, signMessage};
+const betTransaction = async (provider: IProvider, bettingAmount: number): Promise<any> => {
+  try {
+    const ethersProvider = new ethers.BrowserProvider(provider);
+    const signer = await ethersProvider.getSigner();
+
+    const destination = smartContractDestinationAddress;
+
+    const amount = ethers.parseEther(bettingAmount.toString());
+
+    // Submit transaction to the blockchain
+    const tx = await signer.sendTransaction({
+      to: destination,
+      value: amount,
+      maxPriorityFeePerGas: "5000000000", // Max priority fee per gas
+      maxFeePerGas: "6000000000000", // Max fee per gas
+      
+    });
+
+    // Wait for transaction to be mined
+    const receipt = await tx.wait();
+
+    return receipt;
+  } catch (error) {
+    return error as string;
+  }
+}
+
+
+
+export default {getChainId, getAccounts, getBalance, sendTransaction, signMessage, betTransaction};
