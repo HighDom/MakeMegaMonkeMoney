@@ -58,7 +58,7 @@ const Bet = () => {
           <div className="mt-5 flex flex-row gap-5">
             <input
               type="my-Input"
-              placeholder="Opponent ID"
+              placeholder="Opponent Wallet"
               className="w-50 rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
             />
 

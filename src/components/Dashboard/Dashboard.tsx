@@ -1,12 +1,10 @@
 "use client";
 import dynamic from "next/dynamic";
 import React from "react";
-import ChartOne from "../Charts/ChartOne";
-import ChartTwo from "../Charts/ChartTwo";
-import TableOne from "../Tables/TableOne";
 import CardDataStats from "../CardDataStats";
 import EmptyBox from "../EmptyBox/page";
 import Bet from "../Bet/Bet";
+import Bet2 from "../Bet/Bet2";
 
 const ECommerce: React.FC = () => {
   return (
@@ -27,7 +25,7 @@ const ECommerce: React.FC = () => {
       </div>
 
       <div className="mt-4">
-        <Bet />
+        <Bet2 />
       </div>
     </>
   );
