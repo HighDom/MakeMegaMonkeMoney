@@ -58,12 +58,11 @@ const DropdownNotification = () => {
                 >
                   <p className="text-sm">
                     <span className="text-black dark:text-white">
-                      Edit your information in a swipe
+                      New Bet Created Successfully!
                     </span>{" "}
-                    Sint occaecat cupidatat non proident, sunt in culpa qui
-                    officia deserunt mollit anim.
+                    You've successfully placed a bet on "League of Legends" with
+                    a wager of 0.5 ETH. Good luck!
                   </p>
-
                   <p className="text-xs">12 May, 2025</p>
                 </Link>
               </li>
@@ -74,11 +73,11 @@ const DropdownNotification = () => {
                 >
                   <p className="text-sm">
                     <span className="text-black dark:text-white">
-                      It is a long established fact
+                      Challenge Accepted!
                     </span>{" "}
-                    that a reader will be distracted by the readable.
+                    Your opponent has accepted your challenge for "Valorant".
+                    Match scheduled for 24th Feb 2025.
                   </p>
-
                   <p className="text-xs">24 Feb, 2025</p>
                 </Link>
               </li>
@@ -89,12 +88,11 @@ const DropdownNotification = () => {
                 >
                   <p className="text-sm">
                     <span className="text-black dark:text-white">
-                      There are many variations
+                      Bet Settled: You Won!
                     </span>{" "}
-                    of passages of Lorem Ipsum available, but the majority have
-                    suffered
+                    Congratulations! You've won 1.2 ETH from your recent
+                    "Counter-Strike: Global Offensive" bet.
                   </p>
-
                   <p className="text-xs">04 Jan, 2025</p>
                 </Link>
               </li>
@@ -105,12 +103,11 @@ const DropdownNotification = () => {
                 >
                   <p className="text-sm">
                     <span className="text-black dark:text-white">
-                      There are many variations
+                      New Challenge Received!
                     </span>{" "}
-                    of passages of Lorem Ipsum available, but the majority have
-                    suffered
+                    You've received a challenge for a "Dota 2" match. Review the
+                    details and place your bet.
                   </p>
-
                   <p className="text-xs">01 Dec, 2024</p>
                 </Link>
               </li>

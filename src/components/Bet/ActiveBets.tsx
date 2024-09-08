@@ -27,7 +27,7 @@ const ActiveBets: React.FC = () => {
           game: "League of Legends",
           gameMode: "Summoner's Rift",
           betAmount: "0.1",
-          opponent: "OpponentUser1",
+          opponent: "donutss",
           region: "North America",
           status: "active",
         },
@@ -36,7 +36,7 @@ const ActiveBets: React.FC = () => {
           game: "Dota 2",
           gameMode: "All Pick",
           betAmount: "0.05",
-          opponent: "OpponentUser2",
+          opponent: "chrissizbahy",
           region: "Europe",
           status: "won",
         },
@@ -45,7 +45,7 @@ const ActiveBets: React.FC = () => {
           game: "Counter-Strike: Global Offensive",
           gameMode: "Competitive",
           betAmount: "0.15",
-          opponent: "OpponentUser3",
+          opponent: "vitalikButerin",
           region: "Asia",
           status: "lost",
         },
@@ -73,13 +73,26 @@ const ActiveBets: React.FC = () => {
   const getStatusBgColor = (status: string) => {
     switch (status) {
       case "active":
-        return "bg-yellow-300";
+        return "bg-yellow-100 border-yellow-500";
       case "won":
-        return "bg-green-300";
+        return "bg-green-100 border-green-500";
       case "lost":
-        return "bg-blackw";
+        return "border-black";
       default:
-        return "bg-gray-300";
+        return "border-gray-300";
+    }
+  };
+
+  const getDarkStatusBgColor = (status: string) => {
+    switch (status) {
+      case "active":
+        return "dark:border-yellow-300";
+      case "won":
+        return "dark:border-green-300";
+      case "lost":
+        return "dark:border-blackw";
+      default:
+        return "darK:border-gray-300";
     }
   };
 
@@ -92,7 +105,7 @@ const ActiveBets: React.FC = () => {
         {bets.map((bet) => (
           <div
             key={bet.id}
-            className={`${getStatusColor(bet.status)} ${getStatusBgColor(bet.status)} rounded-lg border border-stroke p-4 dark:border-strokedark dark:bg-meta-4`}
+            className={`${getStatusColor(bet.status)} ${getStatusBgColor(bet.status)} ${getDarkStatusBgColor(bet.status)} rounded-lg border border-stroke p-4 dark:border-strokedark dark:bg-meta-4 `}
           >
             <div className="flex justify-between">
               <h5 className="text-lg font-semibold">{bet.game}</h5>

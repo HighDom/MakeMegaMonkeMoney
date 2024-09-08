@@ -50,6 +50,7 @@ const menuGroups = [
         children: [
           { label: "Bets", route: "/" },
           { label: "Active-Bets", route: "/activeBets" },
+          { label: "Join-Bet", route: "/joinBets" },
         ],
       },
     ],
