@@ -29,6 +29,7 @@ const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
   const [userProfile, setUserProfile] = useState<string>("Default Image");
   const [userBalance, setUserBalance] = useState<string>("Default Balance");
   const [gameHash, setGameHash] = useState<string>("Default Game Hash");
+  const [betAmountExample, setBetAmountExample] = useState<string>("0.322 ETH");
 
   useEffect(() => {
     const init = async () => {
@@ -173,12 +174,14 @@ const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
         signMessage,
         sendTransaction,
         setGameHash,
+        setBetAmountExample,
         userName,
         userAccount,
         userProfile,
         userBalance,
         provider,
         gameHash,
+        betAmountExample,
       }}
     >
       {children}

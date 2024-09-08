@@ -16,7 +16,7 @@ interface Bet {
 
 const ActiveBets: React.FC = () => {
   const [bets, setBets] = useState<Bet[]>([]);
-  const { userName, gameHash } = useWeb3Auth();
+  const { userName, gameHash, betAmountExample } = useWeb3Auth();
   const [copiedHash, setCopiedHash] = useState<string | null>(null);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const ActiveBets: React.FC = () => {
           id: "1",
           game: "League of Legends",
           gameMode: "Most Kills",
-          betAmount: "0.082",
+          betAmount: betAmountExample,
           opponent: "donutss",
           region: "Europe",
           status: "active",

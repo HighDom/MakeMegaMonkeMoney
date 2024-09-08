@@ -42,7 +42,13 @@ const isGameModeActive = (game: string, mode: string) =>
 const isRegionActive = (region: string) => region === "Europe";
 
 const Bet: React.FC = () => {
-  const { provider, gameHash, setGameHash } = useWeb3Auth();
+  const {
+    provider,
+    gameHash,
+    setGameHash,
+    setBetAmountExample,
+    betAmountExample,
+  } = useWeb3Auth();
 
   const [selectedGame, setSelectedGame] = useState<string>("");
   const [selectedGameMode, setSelectedGameMode] = useState<string>("");
@@ -93,7 +99,9 @@ const Bet: React.FC = () => {
   const handleBettingAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
     const usdAmount = e.target.value;
     setBettingAmountUSD(usdAmount);
+
     const ethAmount = (parseFloat(usdAmount) / 2285.14).toFixed(6);
+    setBetAmountExample(ethAmount);
     setBettingAmountETH(ethAmount);
   };
 

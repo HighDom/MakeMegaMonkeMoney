@@ -6,7 +6,8 @@ import { joinBet } from "@/context/smartContractInteractions";
 import { ethers } from "ethers";
 
 const Bet: React.FC = () => {
-  const { provider, setGameHash } = useWeb3Auth();
+  const { provider, setGameHash, betAmountExample, setBetAmountExample } =
+    useWeb3Auth();
   const [gameHashInput, setGameHashInput] = useState<string>("");
   const [betDetails, setBetDetails] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -37,7 +38,7 @@ const Bet: React.FC = () => {
       setBetDetails({
         game: "League of Legends",
         gameMode: "Most Kills",
-        betAmount: "0.1 ETH",
+        betAmount: betAmountExample,
         player1: "doemuderdoener#3482",
         player2: "donutts#4923",
         region: "Europe",
@@ -156,7 +157,8 @@ const Bet: React.FC = () => {
                     <span className="font-bold">Game Mode: </span>Most Kills
                   </p>
                   <p>
-                    <span className="font-bold">Bet Amount: </span>0.1 ETH
+                    <span className="font-bold">Bet Amount: </span>
+                    {betAmountExample}
                   </p>
                   <p>
                     <span className="font-bold">Player 1: </span>
