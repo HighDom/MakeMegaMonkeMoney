@@ -41,9 +41,7 @@ const DropdownNotification = () => {
         </Link>
 
         {dropdownOpen && (
-          <div
-            className={`absolute -right-27 mt-2.5 flex h-90 w-75 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark sm:right-0 sm:w-80`}
-          >
+          <div className="absolute -right-27 mt-2.5 flex h-90 w-75 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark sm:right-0 sm:w-80">
             <div className="px-4.5 py-3">
               <h5 className="text-sm font-medium text-bodydark2">
                 Notification
@@ -57,13 +55,39 @@ const DropdownNotification = () => {
                   href="#"
                 >
                   <p className="text-sm">
-                    <span className="text-black dark:text-white">
-                      New Bet Created Successfully!
-                    </span>{" "}
-                    You've successfully placed a bet on "League of Legends" with
-                    a wager of 0.5 ETH. Good luck!
+                    <span className="text-black dark:text-white">Welcome!</span>{" "}
+                    Create your first bet and win some money!
                   </p>
-                  <p className="text-xs">12 May, 2025</p>
+                  <p className="text-xs">28 Aug, 2024</p>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="flex flex-col gap-2.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
+                  href="/joinBets"
+                >
+                  <p className="text-sm">
+                    <span className="text-black dark:text-white">
+                      Join Bets
+                    </span>{" "}
+                    You can Join Bets on the left side incase your friend
+                    created a Bet
+                  </p>
+                  <p className="text-xs">2 Sep, 2024</p>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="flex flex-col gap-2.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
+                  href="/activeBets"
+                >
+                  <p className="text-sm">
+                    <span className="text-black dark:text-white">
+                      Active Bets
+                    </span>{" "}
+                    You can see your history under active-bets
+                  </p>
+                  <p className="text-xs">5 Sep, 2024</p>
                 </Link>
               </li>
               <li>
@@ -73,42 +97,11 @@ const DropdownNotification = () => {
                 >
                   <p className="text-sm">
                     <span className="text-black dark:text-white">
-                      Challenge Accepted!
+                      Coming Soon!
                     </span>{" "}
-                    Your opponent has accepted your challenge for "Valorant".
-                    Match scheduled for 24th Feb 2025.
+                    New Game Modes coming out soon! Stay tuned
                   </p>
-                  <p className="text-xs">24 Feb, 2025</p>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="flex flex-col gap-2.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-                  href="#"
-                >
-                  <p className="text-sm">
-                    <span className="text-black dark:text-white">
-                      Bet Settled: You Won!
-                    </span>{" "}
-                    Congratulations! You've won 1.2 ETH from your recent
-                    "Counter-Strike: Global Offensive" bet.
-                  </p>
-                  <p className="text-xs">04 Jan, 2025</p>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="flex flex-col gap-2.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-                  href="#"
-                >
-                  <p className="text-sm">
-                    <span className="text-black dark:text-white">
-                      New Challenge Received!
-                    </span>{" "}
-                    You've received a challenge for a "Dota 2" match. Review the
-                    details and place your bet.
-                  </p>
-                  <p className="text-xs">01 Dec, 2024</p>
+                  <p className="text-xs">8 Sep, 2024</p>
                 </Link>
               </li>
             </ul>

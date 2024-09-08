@@ -29,7 +29,7 @@ const gameModes: { [key: string]: string[] } = {
 
 const isGameActive = (game: string) => game === "League of Legends";
 const isGameModeActive = (game: string, mode: string) =>
-  game === "League of Legends" && mode === "Kills";
+  game === "League of Legends" && mode === "Most Kills";
 const isRegionActive = (region: string) => region === "Europe";
 
 const Bet: React.FC = () => {
@@ -102,6 +102,8 @@ const Bet: React.FC = () => {
     setIsTransactionPending(true);
     setIsAlertVisible(true);
 
+    setTimeout(() => {}, 1000);
+
     // Simulate a transaction delay
     setTimeout(() => {
       setIsTransactionPending(false);
@@ -122,7 +124,7 @@ const Bet: React.FC = () => {
       >
         <div className="mt-4">
           {isAlertVisible && (
-            <div className="absolute ml-20 flex h-230 w-230 border-l-6 border-[#34D399] bg-[#34D399] bg-opacity-[90%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-90 md:p-5">
+            <div className="absolute ml-20 flex h-230 w-230 border-l-6 border-primary bg-secondary bg-opacity-[95%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-95 md:p-5">
               <div className="w-full">
                 <h5 className="mb-3 text-lg font-semibold text-black dark:text-[#34D399] ">
                   Transaction in Progress

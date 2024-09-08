@@ -175,6 +175,7 @@ const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
         userAccount,
         userProfile,
         userBalance,
+        provider,
       }}
     >
       {children}
