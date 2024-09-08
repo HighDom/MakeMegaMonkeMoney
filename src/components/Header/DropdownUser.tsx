@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ClickOutside from "@/components/ClickOutside";
 import { Web3Auth } from "@web3auth/modal";
-import { useWeb3Auth } from "@/context/web3AuthContext";
+import { useWeb3Auth } from "@/context/useWeb3Auth";
 
 type DropdownUserProps = {
   userName: string;
