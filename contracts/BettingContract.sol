@@ -1,3 +1,5 @@
+pragma solidity ^0.8.27;
+
 // // SPDX-License-Identifier: MIT
 // pragma solidity ^0.8.19;
 
@@ -198,7 +200,6 @@
 
 //         // Send Chainlink Functions request for Player 2
 //         bytes32 requestIdP2 = this.sendRequest(174, argsP2);
-
 
 //     }
 
