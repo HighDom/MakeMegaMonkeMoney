@@ -4,6 +4,15 @@ import React, { useState, ChangeEvent, FormEvent } from "react";
 
 import { useWeb3Auth } from "@/context/useWeb3Auth";
 import { useRouter } from "next/navigation";
+import {
+  startBet,
+  joinBet,
+  refundBet,
+  determineWinner,
+} from "./../../context/smartContractInteractions";
+
+import { ethers } from "ethers";
+import { v4 as uuidv4 } from "uuid";
 
 const regions = [
   "North America",
@@ -33,6 +42,8 @@ const isGameModeActive = (game: string, mode: string) =>
 const isRegionActive = (region: string) => region === "Europe";
 
 const Bet: React.FC = () => {
+  const { provider } = useWeb3Auth();
+
   const [selectedGame, setSelectedGame] = useState<string>("");
   const [selectedGameMode, setSelectedGameMode] = useState<string>("");
   const [bettingAmountUSD, setBettingAmountUSD] = useState<string>("");
@@ -43,6 +54,8 @@ const Bet: React.FC = () => {
   const [selectedRegion, setSelectedRegion] = useState<string>("");
   const [userIGN, setUserIGN] = useState<string>("");
   const [userTL, setuserTL] = useState<string>("");
+
+  const [uniqueHash, setUniqueHash] = useState<string>("");
 
   const [isAlertVisible, setIsAlertVisible] = useState(false);
   const [isTransactionPending, setIsTransactionPending] =
@@ -86,6 +99,19 @@ const Bet: React.FC = () => {
     setBettingAmountETH(ethAmount);
   };
 
+  const handleStartBet = async () => {
+    if (!provider) return;
+    try {
+      const uniqueHash = ethers.hashMessage(uuidv4()); //FIXME: Potentially not unique
+      setUniqueHash(uniqueHash);
+
+      const txHash = await startBet(provider, "playerData", uniqueHash);
+      console.log("Bet started, transaction hash:", txHash);
+    } catch (error) {
+      console.error("Error starting bet:", error);
+    }
+  };
+
   const allFieldsFilled =
     selectedGame &&
     selectedGameMode &&
@@ -98,19 +124,25 @@ const Bet: React.FC = () => {
 
   const router = useRouter();
 
+  const createUniqueId = () => {
+    const uniqueHash = ethers.hashMessage(uuidv4()); //FIXME: Potentially not unique
+    setUniqueHash(uniqueHash);
+  };
+
   const handleClick = async () => {
+    createUniqueId();
+    handleStartBet();
     setIsTransactionPending(true);
     setIsAlertVisible(true);
 
     setTimeout(() => {}, 1000);
 
-    // Simulate a transaction delay
     setTimeout(() => {
       setIsTransactionPending(false);
       setIsAlertVisible(false); // Hide the alert after transaction completion
 
       router.push("/activeBets");
-    }, 5000);
+    }, 10000);
 
     // Here you would interact with the smart contract
     console.log("Transaction complete!");

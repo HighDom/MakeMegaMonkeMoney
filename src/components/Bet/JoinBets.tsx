@@ -4,6 +4,13 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useWeb3Auth } from "@/context/useWeb3Auth";
 
+import {
+  startBet,
+  joinBet,
+  refundBet,
+  determineWinner,
+} from "./../../context/smartContractInteractions";
+
 interface BetDetails {
   id: string;
   game: string;
@@ -22,6 +29,7 @@ const JoinBet: React.FC = () => {
   const [showPopup, setShowPopup] = useState(false);
   const { userName, loggedIn } = useWeb3Auth();
   const router = useRouter();
+  const { provider } = useWeb3Auth();
 
   // useEffect(() => {
   //   const { betId } = router.query;
@@ -71,6 +79,8 @@ const JoinBet: React.FC = () => {
       setIsAccepting(false);
     }
   };
+
+  // Similar implementations for joinBet, refundBet, and determineWinner
 
   const handleClosePopup = () => {
     setShowPopup(false);

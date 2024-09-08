@@ -17,6 +17,7 @@ interface Web3AuthContextType {
   userProfile: string;
   userBalance: string;
   provider: IProvider | null; // Fixing the provider type here
+  gameHash: string;
 }
 
 const Web3AuthContext = createContext<Web3AuthContextType>({
@@ -36,6 +37,7 @@ const Web3AuthContext = createContext<Web3AuthContextType>({
   userProfile: "Not Initialized",
   userBalance: "Not Initialized",
   provider: null,
+  gameHash: "Not Initialized",
 });
 
 export default Web3AuthContext;

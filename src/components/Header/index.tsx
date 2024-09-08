@@ -10,6 +10,7 @@ import { useWeb3Auth } from "@/context/useWeb3Auth";
 import LoggedInView from "../Web3View/LoggedInView";
 import UnloggedInView from "../Web3View/UnloggedInView";
 import { useEffect } from "react";
+import GameHashDisplay from "./GameHashDisplay";
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
@@ -46,6 +47,7 @@ const Header = (props: {
       <div className="flex flex-grow items-center justify-end px-4 py-4 shadow-2 md:px-6 2xl:px-11">
         <div className="flex items-center  gap-3 2xsm:gap-7">
           <ul className="flex items-center gap-2 2xsm:gap-4">
+            {loggedIn ? <GameHashDisplay /> : null}
             {/* <!-- Dark Mode Toggler --> */}
             <DarkModeSwitcher />
             {/* <!-- Dark Mode Toggler --> */}
