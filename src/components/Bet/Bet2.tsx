@@ -154,43 +154,47 @@ const Bet: React.FC = () => {
       >
         <div className="mt-4">
           {isAlertVisible && (
-            <div className="absolute ml-20 flex h-230 w-230 border-l-6 border-primary bg-secondary bg-opacity-[95%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-95 md:p-5">
-              <div className="w-full">
-                <h5 className="mb-3 text-lg font-semibold text-black dark:text-[#34D399] ">
-                  Transaction in Progress
-                </h5>
-                {
-                  <div className="bg-gray-100 mb-6 rounded-lg p-4">
-                    <h5 className="mb-2 text-lg font-semibold">Game Details</h5>
+            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+              <div className="scale-110 transform rounded-lg bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 p-8 shadow-2xl transition-transform duration-300 ease-out">
+                <div className="rounded-lg bg-white bg-opacity-70 p-8 shadow-lg">
+                  <h3 className="mb-4 bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-2xl font-extrabold text-transparent">
+                    Transaction in Progress
+                  </h3>
+                  <p className="mb-6 text-lg">
+                    Please wait while your transaction is being processed...
+                  </p>
+
+                  <div className="space-y-4 text-lg">
                     <p>
-                      <strong>Game:</strong> {selectedGame}
+                      <span className="font-bold">Game: </span>
+                      {selectedGame || "League of Legends"}
                     </p>
                     <p>
-                      <strong>Mode:</strong> {selectedGameMode}
+                      <span className="font-bold">Game Mode: </span>
+                      {selectedGameMode || "Most Kills"}
                     </p>
                     <p>
-                      <strong>Region:</strong> {selectedRegion}
+                      <span className="font-bold">Bet Amount: </span>
+                      {bettingAmountETH || "0.1 ETH"} ETH
                     </p>
                     <p>
-                      <strong>{userName} InGameName:</strong> {userIGN}
+                      <span className="font-bold">Player 1: </span>
+                      {userIGN || "doemuderdoener#3482"}
                     </p>
                     <p>
-                      <strong>{userName} Tag Line:</strong> {userTL}
+                      <span className="font-bold">Player 2: </span>
+                      {opponentIGN || "donutts#4923"}
                     </p>
                     <p>
-                      <strong>Opponent InGameName:</strong> {opponentIGN}
-                    </p>
-                    <p>
-                      <strong>Opponent Tag Line:</strong> {opponentTL}
-                    </p>
-                    <p>
-                      <strong>Bet Amount:</strong> {bettingAmountETH} ETH
+                      <span className="font-bold">Region: </span>
+                      {selectedRegion || "Europe"}
                     </p>
                   </div>
-                }
+                </div>
               </div>
             </div>
           )}
+
           <h4 className="mb-4 text-2xl font-bold text-black dark:text-white">
             Create Bet
           </h4>
