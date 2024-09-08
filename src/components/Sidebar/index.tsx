@@ -47,7 +47,10 @@ const menuGroups = [
         ),
         label: "Dashboard",
         route: "#",
-        children: [{ label: "Bets", route: "/" }],
+        children: [
+          { label: "Bets", route: "/" },
+          { label: "Active-Bets", route: "/activeBets" },
+        ],
       },
     ],
   },

@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import Link from "next/link";
+
 import { useWeb3Auth } from "@/context/useWeb3Auth";
+import { useRouter } from "next/navigation";
 
 const regions = [
   "North America",
@@ -31,7 +32,7 @@ const Bet: React.FC = () => {
   const [selectedGameMode, setSelectedGameMode] = useState<string>("");
   const [bettingAmountUSD, setBettingAmountUSD] = useState<string>("");
   const [bettingAmountETH, setBettingAmountETH] = useState<string>("");
-  const { userName } = useWeb3Auth();
+  const { userName, loggedIn } = useWeb3Auth();
   const [opponentIGN, setOpponentIGN] = useState<string>("");
   const [opponentTL, setOpponentTL] = useState<string>("");
   const [selectedRegion, setSelectedRegion] = useState<string>("");
@@ -89,6 +90,8 @@ const Bet: React.FC = () => {
     opponentTL &&
     selectedRegion;
 
+  const router = useRouter();
+
   const handleClick = async () => {
     setIsTransactionPending(true);
     setIsAlertVisible(true);
@@ -97,6 +100,8 @@ const Bet: React.FC = () => {
     setTimeout(() => {
       setIsTransactionPending(false);
       setIsAlertVisible(false); // Hide the alert after transaction completion
+
+      router.push("/activeBets");
     }, 5000);
 
     // Here you would interact with the smart contract
@@ -106,7 +111,9 @@ const Bet: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="h-full rounded-sm border border-stroke bg-white px-7.5 py-6 shadow-default dark:border-strokedark dark:bg-boxdark">
+      <div
+        className={`h-full rounded-sm border border-stroke bg-white px-7.5 py-6 shadow-default dark:border-strokedark dark:bg-boxdark `}
+      >
         <div className="mt-4">
           {isAlertVisible && (
             <div className="absolute ml-20 flex h-230 w-230 border-l-6 border-[#34D399] bg-[#34D399] bg-opacity-[90%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-90 md:p-5">
@@ -149,205 +156,189 @@ const Bet: React.FC = () => {
           <h4 className="mb-4 text-2xl font-bold text-black dark:text-white">
             Create Bet
           </h4>
-
-          <div className="mb-6">
-            <select
-              onChange={handleGameChange}
-              value={selectedGame}
-              className="w-full rounded-lg border border-stroke bg-transparent px-5 py-3 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white"
-            >
-              <option value="">Select Game</option>
-              {games.map((game) => (
-                <option key={game} value={game}>
-                  {game}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {selectedGame && (
+          <div className={`${!loggedIn ? "pointer-events-none blur-sm" : ""}`}>
             <div className="mb-6">
               <select
-                onChange={handleGameModeChange}
-                value={selectedGameMode}
+                onChange={handleGameChange}
+                value={selectedGame}
                 className="w-full rounded-lg border border-stroke bg-transparent px-5 py-3 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white"
               >
-                <option value="">Select Game Mode</option>
-                {gameModes[selectedGame].map((mode) => (
-                  <option key={mode} value={mode}>
-                    {mode}
+                <option value="">Select Game</option>
+                {games.map((game) => (
+                  <option key={game} value={game}>
+                    {game}
                   </option>
                 ))}
               </select>
             </div>
-          )}
 
-          <div className="mb-6 flex flex-col gap-6 md:flex-row">
-            <div>
-              <div
-                className={`mt-5 space-y-4 rounded-lg bg-primary p-4 text-white`}
-              >
-                <h4 className="text-title-md font-bold">{userName}</h4>
-                <div className="flex flex-row gap-5">
-                  <input
-                    type="text"
-                    placeholder="In-game Name"
-                    value={userIGN}
-                    onChange={(e) => setUserIGN(e.target.value)}
-                    className="w-full rounded-lg border border-stroke bg-transparent px-4 py-2 outline-none focus:border-primary focus-visible:shadow-none"
-                  />
-                </div>
-                <div className="flex flex-row gap-5">
-                  <input
-                    type="text"
-                    placeholder="Tagline"
-                    value={userTL}
-                    onChange={(e) => setuserTL(e.target.value)}
-                    className="w-full rounded-lg border border-stroke bg-transparent px-4 py-2 outline-none focus:border-primary focus-visible:shadow-none"
-                  />
-                </div>
+            {selectedGame && (
+              <div className="mb-6">
+                <select
+                  onChange={handleGameModeChange}
+                  value={selectedGameMode}
+                  className="w-full rounded-lg border border-stroke bg-transparent px-5 py-3 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white"
+                >
+                  <option value="">Select Game Mode</option>
+                  {gameModes[selectedGame].map((mode) => (
+                    <option key={mode} value={mode}>
+                      {mode}
+                    </option>
+                  ))}
+                </select>
               </div>
-            </div>
-            <div>
-              <div
-                className={`mt-5 space-y-4 rounded-lg bg-white p-4 text-black`}
-              >
-                <h4 className="text-title-md font-bold">{"Opponent"}</h4>
-                <div className="flex flex-row gap-5">
-                  <input
-                    type="text"
-                    placeholder="In-game Name"
-                    onChange={(e) => setOpponentIGN(e.target.value)}
-                    value={opponentIGN}
-                    className="w-full rounded-lg border border-stroke bg-transparent px-4 py-2 outline-none focus:border-primary focus-visible:shadow-none"
-                  />
-                </div>
-                <div className="flex flex-row gap-5">
-                  <input
-                    type="text"
-                    placeholder="Tagline"
-                    onChange={(e) => setOpponentTL(e.target.value)}
-                    value={opponentTL}
-                    className="w-full rounded-lg border border-stroke bg-transparent px-4 py-2 outline-none focus:border-primary focus-visible:shadow-none"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mb-6">
-            <select
-              onChange={handleRegionChange}
-              value={selectedRegion}
-              className="w-full rounded-lg border border-stroke bg-transparent px-5 py-3 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white"
-            >
-              <option value="">Select Location</option>
-              {regions.map((region) => (
-                <option key={region} value={region}>
-                  {region}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="mb-6 flex flex-row items-center gap-5">
-            <input
-              type="number"
-              placeholder="Bet Size (USD)"
-              className="w-full rounded-lg border border-stroke bg-transparent px-5 py-3 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white"
-              value={bettingAmountUSD}
-              onChange={handleBettingAmountChange}
-            />
-            {bettingAmountETH && (
-              <span className="text-sm font-medium">
-                Equivalent: {bettingAmountETH} ETH
-              </span>
             )}
-          </div>
 
-          {
-            <div className="bg-gray-100 mb-6 rounded-lg p-4">
-              <h5 className="mb-2 text-lg font-semibold">Game Details</h5>
-
-              <p>
-                <strong>Game: </strong>
-                <span className={selectedGame ? "text-green-500" : "text-red"}>
-                  {selectedGame || "missing input"}
-                </span>
-              </p>
-
-              <p>
-                <strong>Mode: </strong>
-                <span
-                  className={selectedGameMode ? "text-green-500" : "text-red"}
+            <div className="mb-6 flex flex-col gap-6 md:flex-row">
+              <div>
+                <div
+                  className={`mt-5 space-y-4 rounded-lg bg-primary p-4 text-white`}
                 >
-                  {selectedGameMode || "missing input"}
-                </span>
-              </p>
-
-              <p>
-                <strong>Region: </strong>
-                <span
-                  className={selectedRegion ? "text-green-500" : "text-red"}
+                  <h4 className="text-title-md font-bold">{userName}</h4>
+                  <div className="flex flex-row gap-5">
+                    <input
+                      type="text"
+                      placeholder="In-game Name"
+                      value={userIGN}
+                      onChange={(e) => setUserIGN(e.target.value)}
+                      className="w-full rounded-lg border border-stroke bg-transparent px-4 py-2 outline-none focus:border-primary focus-visible:shadow-none"
+                    />
+                  </div>
+                  <div className="flex flex-row gap-5">
+                    <input
+                      type="text"
+                      placeholder="Tagline"
+                      value={userTL}
+                      onChange={(e) => setuserTL(e.target.value)}
+                      className="w-full rounded-lg border border-stroke bg-transparent px-4 py-2 outline-none focus:border-primary focus-visible:shadow-none"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div
+                  className={`mt-5 space-y-4 rounded-lg bg-white p-4 text-black`}
                 >
-                  {selectedRegion || "missing input"}
-                </span>
-              </p>
-
-              <p>
-                <strong>{userName} InGameName: </strong>
-                <span className={userIGN ? "text-green-500" : "text-red"}>
-                  {userIGN || "missing input"}
-                </span>
-              </p>
-
-              <p>
-                <strong>{userName} Tag Line: </strong>
-                <span className={userTL ? "text-green-500" : "text-red"}>
-                  {userTL || "missing input"}
-                </span>
-              </p>
-
-              <p>
-                <strong>Opponent InGameName: </strong>
-                <span className={opponentIGN ? "text-green-500" : "text-red"}>
-                  {opponentIGN || "missing input"}
-                </span>
-              </p>
-
-              <p>
-                <strong>Opponent Tag Line: </strong>
-                <span className={opponentTL ? "text-green-500" : "text-red"}>
-                  {opponentTL || "missing input"}
-                </span>
-              </p>
-
-              <p>
-                <strong>Bet Amount: </strong>
-                <span
-                  className={bettingAmountETH ? "text-green-500" : "text-red"}
-                >
-                  {bettingAmountETH
-                    ? `${bettingAmountETH} ETH`
-                    : "missing input"}
-                </span>
-              </p>
+                  <h4 className="text-title-md font-bold">{"Opponent"}</h4>
+                  <div className="flex flex-row gap-5">
+                    <input
+                      type="text"
+                      placeholder="In-game Name"
+                      onChange={(e) => setOpponentIGN(e.target.value)}
+                      value={opponentIGN}
+                      className="w-full rounded-lg border border-stroke bg-transparent px-4 py-2 outline-none focus:border-primary focus-visible:shadow-none"
+                    />
+                  </div>
+                  <div className="flex flex-row gap-5">
+                    <input
+                      type="text"
+                      placeholder="Tagline"
+                      onChange={(e) => setOpponentTL(e.target.value)}
+                      value={opponentTL}
+                      className="w-full rounded-lg border border-stroke bg-transparent px-4 py-2 outline-none focus:border-primary focus-visible:shadow-none"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-          }
 
-          <div className="mt-8">
-            <button
-              type="submit"
-              onClick={handleClick}
-              className={`inline-block w-full rounded-lg px-10 py-4 text-center font-medium transition-all duration-300 ${
-                allFieldsFilled
-                  ? "bg-primary text-white hover:bg-opacity-90"
-                  : "text-gray-400 border-gray-300 cursor-not-allowed border bg-white"
-              }`}
-              disabled={!allFieldsFilled}
-            >
-              Create Bet
-            </button>
+            <div className="mb-6">
+              <select
+                onChange={handleRegionChange}
+                value={selectedRegion}
+                className="w-full rounded-lg border border-stroke bg-transparent px-5 py-3 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white"
+              >
+                <option value="">Select Location</option>
+                {regions.map((region) => (
+                  <option key={region} value={region}>
+                    {region}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="mb-6 flex flex-row items-center gap-5">
+              <input
+                type="number"
+                placeholder="Bet Size (USD)"
+                className="w-full rounded-lg border border-stroke bg-transparent px-5 py-3 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white"
+                value={bettingAmountUSD}
+                onChange={handleBettingAmountChange}
+              />
+              {bettingAmountETH && (
+                <span className="text-sm font-medium">
+                  Equivalent: {bettingAmountETH} ETH
+                </span>
+              )}
+            </div>
+
+            {selectedGame &&
+            selectedGameMode &&
+            selectedRegion &&
+            userIGN &&
+            userTL &&
+            opponentIGN &&
+            opponentTL &&
+            bettingAmountETH ? (
+              <div className="bg-gray-100 mb-6 rounded-lg p-4">
+                <h5 className="mb-2 text-lg font-semibold">Game Details</h5>
+
+                <p>
+                  <strong>Game: </strong>
+                  <span className="text-green-500">{selectedGame}</span>
+                </p>
+
+                <p>
+                  <strong>Mode: </strong>
+                  <span className="text-green-500">{selectedGameMode}</span>
+                </p>
+
+                <p>
+                  <strong>Region: </strong>
+                  <span className="text-green-500">{selectedRegion}</span>
+                </p>
+
+                <p>
+                  <strong>{userName} InGameName: </strong>
+                  <span className="text-green-500">{userIGN}</span>
+                </p>
+
+                <p>
+                  <strong>{userName} Tag Line: </strong>
+                  <span className="text-green-500">{userTL}</span>
+                </p>
+
+                <p>
+                  <strong>Opponent InGameName: </strong>
+                  <span className="text-green-500">{opponentIGN}</span>
+                </p>
+
+                <p>
+                  <strong>Opponent Tag Line: </strong>
+                  <span className="text-green-500">{opponentTL}</span>
+                </p>
+
+                <p>
+                  <strong>Bet Amount: </strong>
+                  <span className="text-green-500">{bettingAmountETH} ETH</span>
+                </p>
+              </div>
+            ) : null}
+
+            <div className="mt-8">
+              <button
+                type="submit"
+                onClick={handleClick}
+                className={`inline-block w-full rounded-lg px-10 py-4 text-center font-medium transition-all duration-300 ${
+                  allFieldsFilled
+                    ? "bg-primary text-white hover:bg-opacity-90 dark:bg-primary dark:text-white dark:hover:bg-opacity-80"
+                    : "text-gray-400 border-gray-300 dark:text-gray-600 dark:border-gray-600 cursor-not-allowed border bg-white dark:bg-slate-800"
+                }`}
+                disabled={!allFieldsFilled}
+              >
+                Create Bet
+              </button>
+            </div>
           </div>
         </div>
       </div>

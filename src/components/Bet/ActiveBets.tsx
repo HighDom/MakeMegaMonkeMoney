@@ -70,6 +70,19 @@ const ActiveBets: React.FC = () => {
     }
   };
 
+  const getStatusBgColor = (status: string) => {
+    switch (status) {
+      case "active":
+        return "bg-yellow-300";
+      case "won":
+        return "bg-green-300";
+      case "lost":
+        return "bg-blackw";
+      default:
+        return "bg-gray-300";
+    }
+  };
+
   return (
     <div className="h-full rounded-sm border border-stroke bg-white px-7.5 py-6 shadow-default dark:border-strokedark dark:bg-boxdark">
       <h4 className="mb-6 text-2xl font-bold text-black dark:text-white">
@@ -79,7 +92,7 @@ const ActiveBets: React.FC = () => {
         {bets.map((bet) => (
           <div
             key={bet.id}
-            className="bg-gray-100 rounded-lg border border-stroke p-4 dark:border-strokedark dark:bg-meta-4"
+            className={`${getStatusColor(bet.status)} ${getStatusBgColor(bet.status)} rounded-lg border border-stroke p-4 dark:border-strokedark dark:bg-meta-4`}
           >
             <div className="flex justify-between">
               <h5 className="text-lg font-semibold">{bet.game}</h5>

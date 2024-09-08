@@ -54,12 +54,12 @@ const Header = (props: {
 
             {loggedIn ? <CashBalance userBalance={userBalance} /> : null}
 
-            {loggedIn ? <CashBalanceButton /> : null}
+            {false ? <CashBalanceButton /> : null}
 
             {/* Logged In??? */}
 
             {/* <!-- Notification Menu Area --> */}
-            <DropdownNotification />
+            {loggedIn ? <DropdownNotification /> : null}
             {/* <!-- Notification Menu Area --> */}
           </ul>
 

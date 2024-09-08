@@ -1,6 +1,8 @@
 import { useWeb3Auth } from "@/context/useWeb3Auth";
 
 const loggedInView = () => {
+  //CURRENTYL NOT IN USE!!! CAREFULLL
+
   const {
     getUserInfo,
     getAccounts,
