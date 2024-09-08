@@ -38,6 +38,7 @@ const Bet: React.FC = () => {
   const [userIGN, setUserIGN] = useState<string>("");
   const [userTL, setuserTL] = useState<string>("");
 
+  const [isAlertVisible, setIsAlertVisible] = useState(false);
   const [isTransactionPending, setIsTransactionPending] =
     useState<boolean>(false); // To track the transaction state
 
@@ -90,15 +91,15 @@ const Bet: React.FC = () => {
 
   const handleClick = async () => {
     setIsTransactionPending(true);
-    alert("Transaction in progress...");
+    setIsAlertVisible(true);
 
     // Simulate a transaction delay
     setTimeout(() => {
       setIsTransactionPending(false);
-    }, 3000);
+      setIsAlertVisible(false); // Hide the alert after transaction completion
+    }, 5000);
 
     // Here you would interact with the smart contract
-    // For now, we'll just simulate the transaction
     console.log("Transaction complete!");
     setIsTransactionPending(false);
   };
@@ -107,6 +108,44 @@ const Bet: React.FC = () => {
     <form onSubmit={handleSubmit}>
       <div className="h-full rounded-sm border border-stroke bg-white px-7.5 py-6 shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="mt-4">
+          {isAlertVisible && (
+            <div className="absolute ml-20 flex h-230 w-230 border-l-6 border-[#34D399] bg-[#34D399] bg-opacity-[90%] px-7 py-8 shadow-md dark:bg-[#1B1B24] dark:bg-opacity-90 md:p-5">
+              <div className="w-full">
+                <h5 className="mb-3 text-lg font-semibold text-black dark:text-[#34D399] ">
+                  Transaction in Progress
+                </h5>
+                {
+                  <div className="bg-gray-100 mb-6 rounded-lg p-4">
+                    <h5 className="mb-2 text-lg font-semibold">Game Details</h5>
+                    <p>
+                      <strong>Game:</strong> {selectedGame}
+                    </p>
+                    <p>
+                      <strong>Mode:</strong> {selectedGameMode}
+                    </p>
+                    <p>
+                      <strong>Region:</strong> {selectedRegion}
+                    </p>
+                    <p>
+                      <strong>{userName} InGameName:</strong> {userIGN}
+                    </p>
+                    <p>
+                      <strong>{userName} Tag Line:</strong> {userTL}
+                    </p>
+                    <p>
+                      <strong>Opponent InGameName:</strong> {opponentIGN}
+                    </p>
+                    <p>
+                      <strong>Opponent Tag Line:</strong> {opponentTL}
+                    </p>
+                    <p>
+                      <strong>Bet Amount:</strong> {bettingAmountETH} ETH
+                    </p>
+                  </div>
+                }
+              </div>
+            </div>
+          )}
           <h4 className="mb-4 text-2xl font-bold text-black dark:text-white">
             Create Bet
           </h4>
@@ -229,29 +268,69 @@ const Bet: React.FC = () => {
           {
             <div className="bg-gray-100 mb-6 rounded-lg p-4">
               <h5 className="mb-2 text-lg font-semibold">Game Details</h5>
+
               <p>
-                <strong>Game:</strong> {selectedGame}
+                <strong>Game: </strong>
+                <span className={selectedGame ? "text-green-500" : "text-red"}>
+                  {selectedGame || "missing input"}
+                </span>
               </p>
+
               <p>
-                <strong>Mode:</strong> {selectedGameMode}
+                <strong>Mode: </strong>
+                <span
+                  className={selectedGameMode ? "text-green-500" : "text-red"}
+                >
+                  {selectedGameMode || "missing input"}
+                </span>
               </p>
+
               <p>
-                <strong>Region:</strong> {selectedRegion}
+                <strong>Region: </strong>
+                <span
+                  className={selectedRegion ? "text-green-500" : "text-red"}
+                >
+                  {selectedRegion || "missing input"}
+                </span>
               </p>
+
               <p>
-                <strong>{userName} InGameName:</strong> {userIGN}
+                <strong>{userName} InGameName: </strong>
+                <span className={userIGN ? "text-green-500" : "text-red"}>
+                  {userIGN || "missing input"}
+                </span>
               </p>
+
               <p>
-                <strong>{userName} Tag Line:</strong> {userTL}
+                <strong>{userName} Tag Line: </strong>
+                <span className={userTL ? "text-green-500" : "text-red"}>
+                  {userTL || "missing input"}
+                </span>
               </p>
+
               <p>
-                <strong>Opponent InGameName:</strong> {opponentIGN}
+                <strong>Opponent InGameName: </strong>
+                <span className={opponentIGN ? "text-green-500" : "text-red"}>
+                  {opponentIGN || "missing input"}
+                </span>
               </p>
+
               <p>
-                <strong>Opponent Tag Line:</strong> {opponentTL}
+                <strong>Opponent Tag Line: </strong>
+                <span className={opponentTL ? "text-green-500" : "text-red"}>
+                  {opponentTL || "missing input"}
+                </span>
               </p>
+
               <p>
-                <strong>Bet Amount:</strong> {bettingAmountETH} ETH
+                <strong>Bet Amount: </strong>
+                <span
+                  className={bettingAmountETH ? "text-green-500" : "text-red"}
+                >
+                  {bettingAmountETH
+                    ? `${bettingAmountETH} ETH`
+                    : "missing input"}
+                </span>
               </p>
             </div>
           }
