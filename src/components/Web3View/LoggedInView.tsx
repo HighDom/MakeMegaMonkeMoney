@@ -1,6 +1,6 @@
 import { useWeb3Auth } from "@/context/useWeb3Auth";
 
-const loggedInView = () => {
+const LoggedInView = () => {
   //CURRENTYL NOT IN USE!!! CAREFULLL
 
   const {
@@ -50,4 +50,4 @@ const loggedInView = () => {
   );
 };
 
-export default loggedInView;
+export default LoggedInView;

@@ -1,6 +1,6 @@
 import { useWeb3Auth } from "@/context/useWeb3Auth";
 
-const unloggedInView = () => {
+const UnloggedInView = () => {
   const { login } = useWeb3Auth();
   return (
     <button onClick={login} className="card">
@@ -9,4 +9,4 @@ const unloggedInView = () => {
   );
 };
 
-export default unloggedInView;
+export default UnloggedInView;

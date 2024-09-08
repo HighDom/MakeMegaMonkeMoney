@@ -87,7 +87,7 @@ const ActiveBets: React.FC = () => {
     };
 
     fetchBets();
-  }, []);
+  }, [betAmountExample, gameHash]);
 
   const getStatusColor = (status: string) => {
     switch (status) {
