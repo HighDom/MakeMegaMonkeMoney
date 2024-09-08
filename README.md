@@ -1,71 +1,35 @@
-# Online Betting Arena
+# 🐒 MakeMeMonkeyMoney
 
 ## Overview
+**MakeMeMonkeyMoney** is a decentralized platform that enables secure and transparent betting on online game outcomes. By leveraging blockchain technology and Chainlink oracles, the platform ensures that all transactions are safe and that game results are verified in real time.
 
-**Online Betting Arena** is a decentralized platform for placing bets on online game outcomes. The platform leverages blockchain technology for secure, transparent transactions, and uses oracles to verify game results.
+## 🎲 Supported Games
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/86bcc283-f799-4415-8887-932fe99c45ef" alt="league" width="50" height="50"/>
+  <img src="https://github.com/user-attachments/assets/a2ff32b8-9e68-4c05-ba6f-6e2e4362e877" alt="tft" width="50" height="50"/>
+  <img src="https://github.com/user-attachments/assets/87ea4ae7-236f-43b1-b160-388044d72480" alt="valorant" width="50" height="50"/>
+</p>
 
-## Core Concepts
+## ⚙️ Tech Stack
 
-### Onboarding
+- **Frontend:** Next.js, React, TypeScript
+- **Blockchain:** Solidity smart contracts
+- **Oracles:** Chainlink for game result verification and API integration
 
-- **User Account Setup:**
-  - Create an account and connect your wallet.
-- **Fund Management:**
-  - Deposit and withdraw funds securely using your linked wallet.
-- **Account ID:**
-  - Share your unique ID to connect with other players for betting.
+## 🌟 Key Features
 
-### Betting System
+- **User Onboarding:**
+  - Create an account and connect your wallet
+  - Deposit and withdraw funds securely
 
-- **Create Bet:**
-  - Set the bet amount, select an opponent, and choose the game.
-- **Accept Bet:**
-  - Review and accept bets, displaying opponent details, game, and wagered amount.
-- **Outcome Processing:**
-  - Winners receive funds automatically, losers are notified with proof.
+- **Betting System:**
+  - Create and accept bets on supported games
+  - Set wager amounts and receive automatic payouts based on verified outcomes
 
-### Dispute Resolution
+- **Dispute Resolution:**
+  - Request impartial rulings via smart contracts in case of disputes
 
-- **Judge Ruling:**
-  - Request an impartial judge (via smart contract) for dispute resolution, freezing funds until resolved.
+- **Game Integration:**
+  - Chainlink Functions automatically verify game results
 
-### Game Integration
-
-- **Oracle Integration:**
-  - Utilize Chainlink Functions to fetch and verify game results automatically.
-- **Automatic Payouts:**
-  - Funds are transferred based on verified game outcomes.
-
-### User Profile
-
-- **Win/Loss Record:**
-  - Track your performance across various games.
-- **Reputation Score:**
-  - (Optional) A score reflecting reliability.
-
-### Additional Features
-
-- **Bet History:**
-  - Review all past bets and outcomes.
-- **Leaderboards:**
-  - Rankings for top winners and most active players.
-- **Customer Support:**
-  - Access to FAQ, support tickets, and live chat for issues.
-
-## Tech Stack
-
-- **Frontend:**
-  - Built with Next.js, React, and TypeScript.
-- **Blockchain Integration:**
-  - Smart contracts developed in Solidity.
-- **Oracle Service:**
-  - Chainlink Functions for updating game outcomes.
-
-## Ideas for Future Enhancements
-
-- **Reputation System:**
-  - Implement a reputation system for better user credibility.
-- **Friend List:**
-  - Add social features to challenge friends more easily.
-- **Enhanced Game Integration:**
-  - Explore deeper integration for automatic game result verification.
+## Architecture
