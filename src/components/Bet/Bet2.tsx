@@ -21,11 +21,16 @@ const games = [
 ];
 
 const gameModes: { [key: string]: string[] } = {
-  "League of Legends": ["Summoner's Rift", "ARAM", "TFT"],
+  "League of Legends": ["Most Kills", "Summoner's Rift", "ARAM", "TFT"],
   "Dota 2": ["All Pick", "Captains Mode", "Turbo"],
   "Counter-Strike: Global Offensive": ["Competitive", "Casual", "Deathmatch"],
   Valorant: ["Unrated", "Competitive", "Spike Rush"],
 };
+
+const isGameActive = (game: string) => game === "League of Legends";
+const isGameModeActive = (game: string, mode: string) =>
+  game === "League of Legends" && mode === "Kills";
+const isRegionActive = (region: string) => region === "Europe";
 
 const Bet: React.FC = () => {
   const [selectedGame, setSelectedGame] = useState<string>("");
@@ -69,6 +74,7 @@ const Bet: React.FC = () => {
   const handleGameModeChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedGameMode(e.target.value);
   };
+
   const handleRegionChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedRegion(e.target.value);
   };
@@ -165,8 +171,12 @@ const Bet: React.FC = () => {
               >
                 <option value="">Select Game</option>
                 {games.map((game) => (
-                  <option key={game} value={game}>
-                    {game}
+                  <option
+                    key={game}
+                    value={game}
+                    disabled={!isGameActive(game)}
+                  >
+                    {game} {!isGameActive(game) && "(Coming Soon)"}
                   </option>
                 ))}
               </select>
@@ -181,8 +191,13 @@ const Bet: React.FC = () => {
                 >
                   <option value="">Select Game Mode</option>
                   {gameModes[selectedGame].map((mode) => (
-                    <option key={mode} value={mode}>
-                      {mode}
+                    <option
+                      key={mode}
+                      value={mode}
+                      disabled={!isGameModeActive(selectedGame, mode)}
+                    >
+                      {mode}{" "}
+                      {!isGameModeActive(selectedGame, mode) && "(Coming Soon)"}
                     </option>
                   ))}
                 </select>
@@ -250,8 +265,12 @@ const Bet: React.FC = () => {
               >
                 <option value="">Select Location</option>
                 {regions.map((region) => (
-                  <option key={region} value={region}>
-                    {region}
+                  <option
+                    key={region}
+                    value={region}
+                    disabled={!isRegionActive(region)}
+                  >
+                    {region} {!isRegionActive(region) && "(Coming Soon)"}
                   </option>
                 ))}
               </select>

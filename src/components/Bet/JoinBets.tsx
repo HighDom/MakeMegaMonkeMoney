@@ -23,12 +23,12 @@ const JoinBet: React.FC = () => {
   const { userName, loggedIn } = useWeb3Auth();
   const router = useRouter();
 
-  useEffect(() => {
-    const { betId } = router.query;
-    if (betId && typeof betId === "string") {
-      fetchBetDetails(betId);
-    }
-  }, [router.query]);
+  // useEffect(() => {
+  //   const { betId } = router.query;
+  //   if (betId && typeof betId === "string") {
+  //     fetchBetDetails(betId);
+  //   }
+  // }, [router.query]);
 
   const fetchBetDetails = async (betId: string) => {
     setIsLoading(true);
