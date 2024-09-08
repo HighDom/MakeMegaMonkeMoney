@@ -201,7 +201,7 @@ const Bet: React.FC = () => {
                       placeholder="In-game Name"
                       value={userIGN}
                       onChange={(e) => setUserIGN(e.target.value)}
-                      className="w-full rounded-lg border border-stroke bg-transparent px-4 py-2 outline-none focus:border-primary focus-visible:shadow-none"
+                      className="w-full rounded-lg border border-stroke bg-transparent px-4 py-2 outline-none focus:border-secondary focus-visible:shadow-none"
                     />
                   </div>
                   <div className="flex flex-row gap-5">
@@ -210,7 +210,7 @@ const Bet: React.FC = () => {
                       placeholder="Tagline"
                       value={userTL}
                       onChange={(e) => setuserTL(e.target.value)}
-                      className="w-full rounded-lg border border-stroke bg-transparent px-4 py-2 outline-none focus:border-primary focus-visible:shadow-none"
+                      className="w-full rounded-lg border border-stroke bg-transparent px-4 py-2 outline-none focus:border-secondary focus-visible:shadow-none"
                     />
                   </div>
                 </div>
