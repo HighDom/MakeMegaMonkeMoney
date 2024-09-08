@@ -54,7 +54,7 @@ const Header = (props: {
 
             {/* Logged In??? */}
 
-            {loggedIn ? <CashBalance userBalance={userBalance} /> : null}
+            {false ? <CashBalance userBalance={userBalance} /> : null}
 
             {false ? <CashBalanceButton /> : null}
 

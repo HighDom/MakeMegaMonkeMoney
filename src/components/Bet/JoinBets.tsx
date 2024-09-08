@@ -29,7 +29,7 @@ const JoinBet: React.FC = () => {
   const [showPopup, setShowPopup] = useState(false);
   const { userName, loggedIn } = useWeb3Auth();
   const router = useRouter();
-  const { provider } = useWeb3Auth();
+  const { provider, gameHash } = useWeb3Auth();
 
   // useEffect(() => {
   //   const { betId } = router.query;
@@ -37,6 +37,14 @@ const JoinBet: React.FC = () => {
   //     fetchBetDetails(betId);
   //   }
   // }, [router.query]);
+
+  const handleJoinBet = async () => {
+    if (!provider || !gameHash) {
+      console.error("Provider or game hash not found");
+      return;
+    }
+    joinBet(provider, gameHash);
+  };
 
   const fetchBetDetails = async (betId: string) => {
     setIsLoading(true);
