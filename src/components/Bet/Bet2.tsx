@@ -42,7 +42,7 @@ const isGameModeActive = (game: string, mode: string) =>
 const isRegionActive = (region: string) => region === "Europe";
 
 const Bet: React.FC = () => {
-  const { provider } = useWeb3Auth();
+  const { provider, gameHash, setGameHash } = useWeb3Auth();
 
   const [selectedGame, setSelectedGame] = useState<string>("");
   const [selectedGameMode, setSelectedGameMode] = useState<string>("");
@@ -54,8 +54,6 @@ const Bet: React.FC = () => {
   const [selectedRegion, setSelectedRegion] = useState<string>("");
   const [userIGN, setUserIGN] = useState<string>("");
   const [userTL, setuserTL] = useState<string>("");
-
-  const [uniqueHash, setUniqueHash] = useState<string>("");
 
   const [isAlertVisible, setIsAlertVisible] = useState(false);
   const [isTransactionPending, setIsTransactionPending] =
@@ -102,10 +100,10 @@ const Bet: React.FC = () => {
   const handleStartBet = async () => {
     if (!provider) return;
     try {
-      const uniqueHash = ethers.hashMessage(uuidv4()); //FIXME: Potentially not unique
-      setUniqueHash(uniqueHash);
+      const uniqueGameHash = ethers.hashMessage(uuidv4()); //FIXME: Potentially not unique
+      setGameHash(uniqueGameHash);
 
-      const txHash = await startBet(provider, "playerData", uniqueHash);
+      const txHash = await startBet(provider, "playerData", gameHash);
       console.log("Bet started, transaction hash:", txHash);
     } catch (error) {
       console.error("Error starting bet:", error);
@@ -126,7 +124,7 @@ const Bet: React.FC = () => {
 
   const createUniqueId = () => {
     const uniqueHash = ethers.hashMessage(uuidv4()); //FIXME: Potentially not unique
-    setUniqueHash(uniqueHash);
+    setGameHash(uniqueHash);
   };
 
   const handleClick = async () => {

@@ -28,6 +28,7 @@ const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
   const [userAccount, setUserAccount] = useState<string>("Default Account");
   const [userProfile, setUserProfile] = useState<string>("Default Image");
   const [userBalance, setUserBalance] = useState<string>("Default Balance");
+  const [gameHash, setGameHash] = useState<string>("Default Game Hash");
 
   useEffect(() => {
     const init = async () => {
@@ -171,11 +172,13 @@ const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
         getBalance,
         signMessage,
         sendTransaction,
+        setGameHash,
         userName,
         userAccount,
         userProfile,
         userBalance,
         provider,
+        gameHash,
       }}
     >
       {children}

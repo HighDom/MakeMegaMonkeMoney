@@ -12,6 +12,7 @@ interface Web3AuthContextType {
   getBalance: () => Promise<void>;
   signMessage: () => Promise<void>;
   sendTransaction: () => Promise<void>;
+  setGameHash: (gameHash: string) => void;
   userName: string;
   userAccount: string;
   userProfile: string;
@@ -32,6 +33,7 @@ const Web3AuthContext = createContext<Web3AuthContextType>({
   getBalance: async () => {},
   signMessage: async () => {},
   sendTransaction: async () => {},
+  setGameHash: (gameHash: string) => {},
   userName: "Not Initialized",
   userAccount: "Not Initialized",
   userProfile: "Not Initialized",
