@@ -1,4 +1,4 @@
-# 🐒 Welcome to MakeMegaMonkeyMoney!
+# 🐒 Welcome to MakeMegaMonkeMoney M4k3M3g4M0nk3M0n3y!
 
 Ready to take your gaming to the next level? Imagine betting against somebody else on the outcome of your next match 💰🔮 - **MakeMegaMonkeMoney** is there to make that happen and give you a thrill while gaming you did not know existed! I'll bet 10$ you will not win the next game... go prove me wrong! **#MakeMegaMonkeMoney**📈🚀
 
@@ -10,7 +10,7 @@ With **Chainlinks Functions** we have found the perfect Oracle to securely and r
 It's simple! Interested in placing a bet just create an account, connect your wallet and you are good to go.
 Enter is your and your challengers game name, as well as what and how much you want to bet on. If the challenged one accepts the bet, it's on! 💸
 
-**MakeMegaMonkeMOney** checks and verifies the result leading to payouts. 💰🔮
+**MakeMegaMonkeMoney** checks and verifies the result leading to payouts. 💰🔮
 
 ## ⚙️ Tech Stack
 
