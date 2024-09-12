@@ -10,7 +10,7 @@ With **Chainlinks Functions** we have found the perfect Oracle to securely and r
 It's simple! Interested in placing a bet just create an account, connect your wallet and you are good to go.
 Enter is your and your challengers game name, as well as what and how much you want to bet on. If the challenged one accepts the bet, it's on! 💸
 
-**MakeMegaMonkeMOney** checks and verifies the result leading to payouts. 💰🔮
+**MakeMegaMonkeMoney** checks and verifies the result leading to payouts. 💰🔮
 
 ## ⚙️ Tech Stack
 
