@@ -46,7 +46,7 @@ const menuGroups = [
           </svg>
         ),
         label: "Introduction",
-        route: "#",
+        route: "/introduction",
       },
       {
         icon: (
@@ -79,9 +79,9 @@ const menuGroups = [
         label: "Betting",
         route: "#",
         children: [
-          { label: "Bets", route: "/" },
-          { label: "Active-Bets", route: "/activeBets" },
+          { label: "Bets", route: "/bet" },
           { label: "Join-Bet", route: "/joinBets" },
+          { label: "Active-Bets", route: "/activeBets" },
         ],
       },
     ],

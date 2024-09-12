@@ -1,4 +1,5 @@
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
+import DepositMoney from "@/components/DepositMoney/DepositMoney";
 import Introduction from "@/components/Introduction/Introduction";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 

@@ -48,17 +48,17 @@ const Header = (props: {
         <div className="flex items-center  gap-3 2xsm:gap-7">
           <ul className="flex items-center gap-2 2xsm:gap-4">
             {loggedIn ? <GameHashDisplay /> : null}
+
+            {/* Logged In??? */}
+
+            {loggedIn ? <CashBalance userBalance={userBalance} /> : null}
+
+            {loggedIn ? <CashBalanceButton /> : null}
+
+            {/* Logged In??? */}
             {/* <!-- Dark Mode Toggler --> */}
             <DarkModeSwitcher />
             {/* <!-- Dark Mode Toggler --> */}
-
-            {/* Logged In??? */}
-
-            {false ? <CashBalance userBalance={userBalance} /> : null}
-
-            {false ? <CashBalanceButton /> : null}
-
-            {/* Logged In??? */}
 
             {/* <!-- Notification Menu Area --> */}
             {loggedIn ? <DropdownNotification /> : null}

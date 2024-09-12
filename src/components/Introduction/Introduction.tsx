@@ -9,12 +9,14 @@ const Introduction: React.FC = () => {
 
   return (
     <div className="mx-auto max-w-2xl space-y-8 p-6">
-      <h1 className="mb-6 text-center text-3xl font-bold">
+      <h1 className="mb-6 text-center text-3xl font-bold text-green-900">
         Welcome to MakeMegaMonkeMoney
       </h1>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold">What is MakeMegaMonkeMoney?</h2>
+        <h2 className="text-2xl font-semibold text-green-700">
+          What is MakeMegaMonkeMoney?
+        </h2>
         <p>
           MakeMegaMonkeMoney is a decentralized platform that allows gamers to
           place bets on their own performance in popular esports titles.
@@ -25,7 +27,7 @@ const Introduction: React.FC = () => {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold">How It Works</h2>
+        <h2 className="text-2xl font-semibold text-green-700">How It Works</h2>
         <ol className="list-inside list-decimal space-y-2">
           <li>Connect your wallet and log in</li>
           <li>Create a bet or join an existing one</li>
@@ -50,14 +52,14 @@ const Introduction: React.FC = () => {
         <button
           onClick={() => router.push("/bet")}
           disabled={!loggedIn}
-          className="w-40"
+          className="inline-block w-full rounded-lg bg-primary px-10 py-4 text-center font-medium text-white transition-all duration-300 hover:bg-opacity-90 dark:bg-primary dark:text-white dark:hover:bg-opacity-80"
         >
           Create Bet
         </button>
         <button
           onClick={() => router.push("/joinBet")}
           disabled={!loggedIn}
-          className="w-40"
+          className="inline-block w-full rounded-lg bg-primary px-10 py-4 text-center font-medium text-white transition-all duration-300 hover:bg-opacity-90 dark:bg-primary dark:text-white dark:hover:bg-opacity-80"
         >
           Join Bet
         </button>

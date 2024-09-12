@@ -12,10 +12,11 @@ const GameHashDisplay = () => {
 
   const copyToClipboard = async () => {
     if (!gameHash) return;
+    if (gameHash === "Default Game Hash") return;
     try {
       await navigator.clipboard.writeText(gameHash);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+      setTimeout(() => setCopied(false), 3000);
     } catch (err) {
       console.error("Failed to copy: ", err);
     }

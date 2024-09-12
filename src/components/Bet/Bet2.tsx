@@ -248,12 +248,14 @@ const Bet: React.FC = () => {
               </div>
             )}
 
-            <div className="mb-6 flex flex-col gap-6 md:flex-row">
+            <div className="mb-6 gap-6 md:flex-row ">
               <div>
                 <div
                   className={`mt-5 space-y-4 rounded-lg bg-primary p-4 text-white`}
                 >
-                  <h4 className="text-title-md font-bold">{userName}</h4>
+                  <h4 className="text-title-md font-bold">
+                    {userName + " (You)"}
+                  </h4>
                   <div className="flex flex-row gap-5">
                     <input
                       type="text"
@@ -276,7 +278,7 @@ const Bet: React.FC = () => {
               </div>
               <div>
                 <div
-                  className={`mt-5 space-y-4 rounded-lg bg-white p-4 text-black`}
+                  className={`mt-5 space-y-4 rounded-lg bg-secondary p-4 text-black`}
                 >
                   <h4 className="text-title-md font-bold">{"Opponent"}</h4>
                   <div className="flex flex-row gap-5">
