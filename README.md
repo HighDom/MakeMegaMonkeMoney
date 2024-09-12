@@ -1,4 +1,4 @@
-# 🐒 Welcome to MakeMegaMonkeyMoney!
+# 🐒 Welcome to MakeMegaMonkeMoney M4k3M3g4M0nk3M0n3y!
 
 Ready to take your gaming to the next level? Imagine betting against somebody else on the outcome of your next match 💰🔮 - **MakeMegaMonkeMoney** is there to make that happen and give you a thrill while gaming you did not know existed! I'll bet 10$ you will not win the next game... go prove me wrong! **#MakeMegaMonkeMoney**📈🚀
 
