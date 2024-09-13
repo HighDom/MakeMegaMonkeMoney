@@ -22,6 +22,16 @@ contract MakeMegaMonkeMoney2Player {
     mapping(address => Bet) bets; //Track of all bets a user has done
     mapping(uint256 => Bet) betsID; //Used for the joinBet function
 
+    function deposit() public payable {
+        balances[msg.sender] += msg.value;
+    }
+
+    function withdraw(uint256 amount) public {
+        require(balances[msg.sender] >= amount);
+        balances[msg.sender] -= amount;
+        payable(msg.sender).transfer(amount);
+    }
+
     function createBet(
         uint256 betID,
         string memory gameName,
@@ -32,7 +42,10 @@ contract MakeMegaMonkeMoney2Player {
         string memory tl2,
         string memory location,
         uint256 betSize
-    ) public payable {
+    ) public {
+        require(balances[msg.sender] >= betSize);
+        balances[msg.sender] -= betSize;
+
         Bet memory betCreated = Bet(
             betID,
             gameName,
@@ -48,15 +61,21 @@ contract MakeMegaMonkeMoney2Player {
             false,
             address(0)
         );
-        require(balances[msg.sender] >= betSize);
+
         bets[msg.sender] = betCreated;
+        betsID[betID] = betCreated;
     }
 
     function joinBet(uint256 betID) public payable {
         require(balances[msg.sender] >= betsID[betID].betSize);
+        Bet memory currentBet = betsID[betID];
+        require(currentBet.betActive == false);
+        //remove beet
+
+        balances[msg.sender] -= betsID[betID].betSize;
 
         betsID[betID].P2 = msg.sender;
 
-        //TODO: Not finished yet
+        betsID[betID].betActive = true;
     }
 }
