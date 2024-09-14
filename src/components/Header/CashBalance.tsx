@@ -10,9 +10,7 @@ const CashBalance = ({ userBalance }: CashBalanceProps) => {
     <div className="flex flex-col items-center rounded-md px-2 py-2 text-center hover:bg-slate-100">
       <a
         className="text-md font-bold text-green-500 dark:text-green-500"
-        href="https://www.youtube.com/watch?v=xvFZjo5PgG0"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/deposit"
       >
         {userBalance !== "Default Balance" ? userBalance + " $" : "0.00" + " $"}
       </a>

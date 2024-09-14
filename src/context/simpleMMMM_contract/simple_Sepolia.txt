@@ -1,0 +1,17 @@
+[block:6688800 txIndex:23]from: 0x4b1...81025to: MakeMegaMonkeMoney.(constructor)value: 0 weidata: 0x608...b0033logs: 0hash: 0xb54...4879e
+status	0x1 Transaction mined and execution succeed
+transaction hash	0xd638ffa668a070cd67b2b8d37f09c52dbe35392afe54e0dc0b8b5a2d5cda9ee9
+block hash	0xb547bedf2bff7c3930be925cb038d05ceafce13bac992af00a35ce49a9f4879e
+block number	6688800
+contract address	0xd11fb0512728fae94d69890ce916d9ead9907d71
+from	0x4b12dab3d34c3001620e524bbf3411bdf8781025
+to	MakeMegaMonkeMoney.(constructor)
+gas	2375981 gas
+transaction cost	2356114 gas 
+input	0x608...b0033
+decoded input	{}
+decoded output	 - 
+logs	[]
+raw logs	[]
+
+

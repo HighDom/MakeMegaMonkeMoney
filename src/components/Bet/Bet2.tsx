@@ -130,14 +130,14 @@ const Bet: React.FC = () => {
 
   const router = useRouter();
 
-  const createUniqueId = () => {
-    const uniqueHash = ethers.hashMessage(uuidv4()); //FIXME: Potentially not unique
-    setGameHash(uniqueHash);
-  };
+  // const createUniqueId = () => {
+  //   const uniqueHash = ethers.hashMessage(uuidv4()); //FIXME: Potentially not unique
+  //   setGameHash(uniqueHash);
+  // };
 
   const handleClick = async () => {
-    createUniqueId();
     handleStartBet();
+
     setIsTransactionPending(true);
     setIsAlertVisible(true);
 

@@ -35,13 +35,29 @@ const Introduction: React.FC = () => {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-green-700">How It Works</h2>
+        <h2 className="text-2xl font-semibold text-green-700">
+          How you can Start
+        </h2>
         <ol className="list-inside list-decimal space-y-2">
           <li>Connect your wallet and log in</li>
           <li>Create a bet or join an existing one</li>
           <li>Play your match and we will automatically detect the winner</li>
           <li>Smart contract automatically distributes winnings</li>
         </ol>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-2xl font-semibold text-green-700">
+          How our transactions Work
+        </h2>
+        <p>
+          We use a smart contract to create your bet. Once 2 players joined we
+          will make the bet active Then we wait for your game to finish and we
+          use Chainlink Oracle Functions to call LoL API to determine the bet
+          outcome. As soon as our Oracles reached a consensus they will call the
+          winner Function and automatically send the funds to the appropriate
+          destination
+        </p>
       </section>
 
       {!loggedIn && (
